@@ -510,7 +510,7 @@ namespace Scada.Storages.MSSqlStorage
             string sql =
                 $"SELECT path FROM {GetTableName(category)} " +
                 "WHERE " + (category == DataCategory.View ? "" : "app_id = @appID AND ") +
-                "starts_with(path, @path) AND substring(path,@pathLen) LIKE @searchPattern";
+                "starts_with(path, @path) AND substr(path,@pathLen) LIKE @searchPattern";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("path", NormalizePath(path));
